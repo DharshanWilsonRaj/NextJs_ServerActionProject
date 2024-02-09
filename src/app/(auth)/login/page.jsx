@@ -1,23 +1,27 @@
 
 import InputElement from '@/components/inputElement/InputElement'
 import React from 'react'
+import { login } from '../action'
+import { redirect } from 'next/navigation'
 
 
 const page = async () => {
-    
-    // const response = await fetch('${process.env.NEXT_BASE_URL}/login', {
-    //     method: "POST",
-    //     // body
-    // })
-    
+    const handleSubmit = async (values, res) => {
+        'use server'
+        const response = await login(values, res);
+        if (response?.success) {
+            redirect('/')
+        }
+    }
     return (
         <div className="h-screen bg-[url('https://i0.wp.com/blue.com.iq/wp-content/uploads/2021/10/Profile-01.jpg?resize=1920%2C1080&ssl=1')]">
             <div className='flex '>
-                <form class="max-w-sm mx-auto mt-40 bg-gradient-to-r  from-gray-50 to-gray-50 h-[300px] w-[380px] p-3 rounded">
+                <form className="max-w-sm mx-auto mt-40 bg-gradient-to-r  from-gray-50 to-gray-50 h-[300px] w-[380px] p-3 rounded" action={handleSubmit}>
                     <h6 className='text-xl font-semibold text-center mt-4'>Login </h6>
                     <div className="mb-5">
                         <InputElement
                             label="Email "
+                            type="email"
                             placeholder="Enter your email"
                             name="email"
                         />
@@ -25,8 +29,9 @@ const page = async () => {
                     <div className="mb-5">
                         <InputElement
                             label="Password"
+                            type="password"
                             placeholder="Enter your password"
-                            password
+                            name="password"
                         />
                     </div>
                     <div className="flex flex-col w-full">
