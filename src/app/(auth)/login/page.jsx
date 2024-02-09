@@ -5,12 +5,11 @@ import React from 'react'
 
 const page = async () => {
     
-
     // const response = await fetch('${process.env.NEXT_BASE_URL}/login', {
     //     method: "POST",
     //     // body
-
     // })
+    
     return (
         <div className="h-screen bg-[url('https://i0.wp.com/blue.com.iq/wp-content/uploads/2021/10/Profile-01.jpg?resize=1920%2C1080&ssl=1')]">
             <div className='flex '>

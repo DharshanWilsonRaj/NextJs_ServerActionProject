@@ -19,16 +19,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <ProtectedLayout /> */}
-        {/* {
+        <ProtectedLayout />
+        {
           isLoggedin && <Header />
-        } */}
-        <Header />
+        }
+        {/* <Header /> */}
         <div className="flex h-screen ">
-          {/* {
+          {
             isLoggedin && <Sidebar />
-          } */}
-          <Sidebar />
+          }
+          {/* <Sidebar /> */}
           <div className=" bg-slate-50 w-full max-w-screen-3xl">
             {children}
           </div>
