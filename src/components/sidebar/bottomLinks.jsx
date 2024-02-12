@@ -1,5 +1,6 @@
 
 import { logout } from '@/app/(auth)/action';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation'
 
 const BottomLinks = () => {
@@ -8,9 +9,11 @@ const BottomLinks = () => {
         'use server'
         const response = await logout();
         if (response?.success) {
+
             redirect('/login')
         }
     }
+    
     return (
 
         <div className='w-full'>

@@ -6,13 +6,11 @@ export async function isLoggedIn() {
     try {
         const cookieStore = cookies();
         const user = cookieStore.get('user');
-
-        return user?.value === "admin" ? 'admin' : user?.value || null
+        return user?.value === "admin" ? "admin" : user?.value || null
     } catch (error) {
         console.log(error);
     }
 }
-
 
 export async function login(values) {
     const response = await fetch(`${process.env.NEXT_BASE_URL}/login`, {
@@ -40,6 +38,7 @@ export async function login(values) {
 }
 
 export async function logout() {
+
     const cookieStore = cookies();
     const token = cookieStore.get('token');
 
@@ -55,14 +54,15 @@ export async function logout() {
     if (json.success) {
         cookies().delete('user')
         cookies().delete('token')
+        revalidatePath('/')
         process.on('exit', function () {
             process.exit(1);
         });
-        revalidatePath('/')
         return json
     }
 }
-export  const getDepartMent = (value) => {
+
+export const getDepartMent = (value) => {
     switch (parseInt(value)) {
         case 1:
             return "Web Developement"

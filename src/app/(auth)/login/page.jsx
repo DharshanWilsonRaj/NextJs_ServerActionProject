@@ -3,14 +3,26 @@ import InputElement from '@/components/inputElement/InputElement'
 import React from 'react'
 import { login } from '../action'
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 
 
 const page = async () => {
     const handleSubmit = async (values, res) => {
         'use server'
         const response = await login(values, res);
+
         if (response?.success) {
-            redirect('/')
+            const cookieStore = cookies();
+            const user = cookieStore.get('user');
+            if (user?.value === "admin") {
+                redirect('/')
+            }
+            if (user?.value && user?.value !== "admin") {
+                redirect('/employeeProfile')
+            }
+            else{
+                redirect('/')
+            }
         }
     }
     return (

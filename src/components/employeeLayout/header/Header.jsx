@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import Links from "./links"
 import { logout } from "@/app/(auth)/action";
+import { revalidatePath } from "next/cache";
 
 const EmployeeHeader = ({ userName }) => {
 
@@ -8,6 +9,7 @@ const EmployeeHeader = ({ userName }) => {
         'use server'
         const response = await logout();
         if (response?.success) {
+            revalidatePath('/')
             redirect('/login')
         }
     }

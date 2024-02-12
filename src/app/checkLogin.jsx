@@ -15,7 +15,10 @@ const CheckLogoinComponent = () => {
         else if (isUserLogged && isUserLogged !== "admin") {
             router.push('/employeeProfile')
         }
-      
+        else {
+            router.push('/')
+        }
+
     }
     useEffect(() => {
         checkLogoin();
@@ -23,7 +26,6 @@ const CheckLogoinComponent = () => {
 
     return (
         <>
-
         </>
     )
 }

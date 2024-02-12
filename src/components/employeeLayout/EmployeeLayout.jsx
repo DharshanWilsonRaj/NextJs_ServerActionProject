@@ -1,7 +1,7 @@
 import React from 'react'
 import EmployeeHeader from './header/Header'
 
-const EmployeeLayout = ({ children, userName }) => {
+const EmployeeLayout = ({ children, userName  }) => {
     return (
         <div className="">
             <EmployeeHeader userName={userName} />
