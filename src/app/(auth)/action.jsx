@@ -33,6 +33,7 @@ export async function login(values) {
         process.on('exit', function () {
             process.exit(1);
         });
+        revalidatePath('/')
         return json
     }
 }
