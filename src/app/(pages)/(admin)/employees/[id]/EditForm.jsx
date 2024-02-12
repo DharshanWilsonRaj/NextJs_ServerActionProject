@@ -36,6 +36,7 @@ const EditForm = ({ id }) => {
     const router = useRouter();
 
     const handleSubmit = async (values) => {
+        console.log(values);
         try {
             const response = await handleEmployeeUpdate(values, id);
             if (response.success) {
@@ -67,10 +68,12 @@ const EditForm = ({ id }) => {
 
     const getEmployee = useCallback(async function () {
         const response = await getEmployeeById(id);
+        console.log(response);
         formikRef.current.setFieldValue('emp_id', response?.emp_id || "")
         formikRef.current.setFieldValue('name', response?.name || "")
         formikRef.current.setFieldValue('email', response?.email || "")
         formikRef.current.setFieldValue('phone', response?.phone || "")
+
         formikRef.current.setFieldValue('department', response?.department || "")
         formikRef.current.setFieldValue('doj', response?.doj || "")
     }, []);
@@ -88,7 +91,7 @@ const EditForm = ({ id }) => {
                     <h6 className=' text-xl font-semibold mx-auto'>Edit Employee</h6>
                 </div>
                 <div className="grid gap-5 my-4">
-                    
+
                     <InputElement
                         type="text"
                         label="Employee ID"

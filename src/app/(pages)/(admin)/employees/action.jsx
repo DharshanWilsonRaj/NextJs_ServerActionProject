@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 
 export async function handleEmployeeadd(values) {
     try {
-        const response = await fetch('http://localhost:8000/api/employee/store', {
+        const response = await fetch('http://localhost:8000/api/register', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -11,6 +11,7 @@ export async function handleEmployeeadd(values) {
             body: JSON.stringify(values),
         })
         const json = await response.json();
+        console.log(json, "json");
         revalidatePath('/employees')
         if (json.success) {
             return json
@@ -40,6 +41,7 @@ export async function getEmployeeById(id) {
 }
 
 export async function handleEmployeeUpdate(values, id) {
+
     try {
         const response = await fetch(`http://localhost:8000/api/employee/update/${id}`, {
             method: "POST",

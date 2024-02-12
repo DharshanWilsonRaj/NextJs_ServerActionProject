@@ -56,3 +56,18 @@ export async function UpdateLeaveByID(values, id) {
         return json
     }
 }
+export async function EmployeeLeaveSubmit(values) {
+    console.log(values);
+    const response = await fetch(`http://localhost:8000/api/employee/leave/store`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values),
+    })
+    const json = await response.json();
+    if (json?.success) {
+        revalidatePath('/leaves');
+        return json
+    }
+}

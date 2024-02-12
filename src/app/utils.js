@@ -1,16 +1,21 @@
-export const getDepartMent = (value) => {
-    switch (parseInt(value)) {
-        case 1:
-            return "Web Developement"
-        case 2:
-            return "Mobile Developement"
-        case 3:
-            return "Design"
-        case 4:
-            return "Testing"
-        case 5:
-            return "Degital Marketing"
-        default:
-            break;
+
+
+import { cookies } from "next/headers"
+export async function getUser() {
+    try {
+        const cookieStore = cookies();
+        const { value: token } = cookieStore.get('token');
+        const response = await fetch('http://localhost:8000/api/userDetails', {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const json = await response?.json();
+        const data = json?.data
+        return data
+    } catch (error) {
+        console.log(error);
     }
 }

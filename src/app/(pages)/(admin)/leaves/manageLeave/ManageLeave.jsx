@@ -34,9 +34,9 @@ const ManageLeave = () => {
         setHydrated(true);
     }, []);
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = (values) => {
         try {
-            const response = await leaveSumbitAplication(values);
+            const response = leaveSumbitAplication(values);
             const json = response
             if (json.success) {
                 toast('success fully submited!', {

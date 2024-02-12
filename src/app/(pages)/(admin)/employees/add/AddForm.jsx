@@ -24,6 +24,7 @@ const initialValues = {
     emp_id: '',
     name: "",
     email: '',
+    password: '',
     phone: '',
     department: '',
     doj: ''
@@ -38,8 +39,7 @@ const AddForm = () => {
     //         body: form,
     //     })
     // }
-
-
+    
     const handleSubmit = useCallback(async (values) => {
         try {
             const response = await handleEmployeeadd(values);
@@ -115,7 +115,17 @@ const AddForm = () => {
                         required
                         error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
                     />
-
+                    
+                    <InputElement
+                        type="password"
+                        label="Password"
+                        name="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        placeholder={'Enter password'}
+                        required
+                        error={formik.errors.password && formik.touched.password ? formik.errors.password : null}
+                    />
                     <InputElement
                         label="Phone"
                         type="text"

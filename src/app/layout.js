@@ -5,12 +5,11 @@ import Header from "@/components/header/header";
 import Sidebar from "@/components/sidebar/sidebar";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { isLoggedIn } from "./(auth)/action";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import CheckLogoinComponent from "./checkLogin";
-
-// import ProtectedLayout from "@/components/Protected/Protected";
+import { isLoggedIn } from "./(auth)/action";
+import EmployeeLayout from "@/components/employeeLayout/EmployeeLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,19 +23,22 @@ let isUserLogged = null;
 async function checkLogoin() {
   isUserLogged = await isLoggedIn();
   if (!isUserLogged) {
+    // revalidatePath('/');
     redirect('/login')
+  } else if (isUserLogged && isUserLogged !== "admin") {
+    revalidatePath('/');
+    // redirect('/employeeProfile')
   }
 }
 
-
 export default function RootLayout({ children }) {
-  checkLogoin()
+  checkLogoin();
   return (
     <html lang="en">
       <body className={inter.className}>
         <CheckLogoinComponent />
         {
-          isUserLogged && <>
+          isUserLogged === "admin" ? <>
             <Header />
             <div className="flex h-screen ">
               <Sidebar />
@@ -44,15 +46,14 @@ export default function RootLayout({ children }) {
                 {children}
               </div>
             </div>
-          </>
-        }
-
-
-
-        {!isUserLogged &&
-          <div className="bg-slate-50 w-full max-w-screen-3xl">
-            {children}
-          </div>
+          </> :
+            isUserLogged && isUserLogged !== "admin" ?
+              <EmployeeLayout children={children} userName={isUserLogged} /> :
+              <>
+                <div className="bg-slate-50 w-full max-w-screen-3xl">
+                  {children}
+                </div>
+              </>
         }
 
         <ToastContainer

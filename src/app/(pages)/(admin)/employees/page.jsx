@@ -2,14 +2,15 @@ import Link from 'next/link'
 import React from 'react'
 import Button from './Button';
 import { handleDeleteEmployee } from './action';
-import { getDepartMent } from '@/app/utils';
+import { getDepartMent } from '@/app/(auth)/action';
+
 
 const EmployeesPage = async () => {
 
     const response = await fetch('http://localhost:8000/api/employee/index');
     const json = await response?.json();
     const data = json?.data || [];
-    
+    console.log(response);
     return (
         <div className='p-2'>
             <div className="flex my-2 items-center">

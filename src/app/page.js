@@ -1,5 +1,5 @@
 import Calendar from "@/components/calendor/Calendar";
-import DashboardPage from "./(pages)/dashboard/Dashboard";
+import DashboardPage from "./(pages)/(admin)/dashboard/Dashboard";
 
 
 export default function Home() {

@@ -1,10 +1,12 @@
 
 import React from 'react'
 import ManageLeave from './manageLeave/ManageLeave'
-import { getDepartMent } from '@/app/utils';
+
 import EditLeaveButton from './Edit/EditLeaveButton';
-import Button from '../employees/Button';
+
 import { handleDeleteLeave } from './actions';
+import Button from '../employees/Button';
+import { getDepartMent } from '@/app/(auth)/action';
 
 const LeavesPage = async () => {
     const response = await fetch("http://localhost:8000/api/admin/leave/index");
@@ -83,7 +85,7 @@ const LeavesPage = async () => {
                                 !!data?.length && data?.map((curr, idx) =>
                                     <tr className="bg-white  border-t border-b" key={idx}>
                                         <td className="px-6 py-4">
-                                            {idx + 1 }
+                                            {idx + 1}
                                         </td>
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {curr.name}

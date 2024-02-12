@@ -1,5 +1,6 @@
 'use client'
-import { getDepartMent } from '@/app/utils'
+
+import { getDepartMent } from '@/app/(auth)/action'
 import FormSelect from '@/components/formSelect/FormSelect'
 import InputElement from '@/components/inputElement/InputElement'
 import moment from 'moment'
