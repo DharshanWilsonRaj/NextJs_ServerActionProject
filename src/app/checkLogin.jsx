@@ -7,18 +7,19 @@ let isUserLogged = null;
 
 const CheckLogoinComponent = () => {
     const router = useRouter()
-    async function checkLogoin() {
-        isUserLogged = await isLoggedIn();
+    function checkLogoin() {
+        isUserLogged = isLoggedIn();
         if (!isUserLogged) {
             router.push('/login')
         }
         else if (isUserLogged && isUserLogged !== "admin") {
             router.push('/employeeProfile')
         }
+      
     }
     useEffect(() => {
         checkLogoin();
-    }, [checkLogoin])
+    }, [])
 
     return (
         <>

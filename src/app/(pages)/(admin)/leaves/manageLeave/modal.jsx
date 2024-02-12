@@ -1,6 +1,5 @@
 'use client'
 
-import { getDepartMent } from '@/app/(auth)/action'
 import FormSelect from '@/components/formSelect/FormSelect'
 import InputElement from '@/components/inputElement/InputElement'
 import moment from 'moment'
@@ -21,6 +20,23 @@ const LeaveManageModal = ({ isHr = false, formik }) => {
             value: 3
         }
     ]
+    const getDepartMent = (value) => {
+        switch (parseInt(value)) {
+            case 1:
+                return "Web Developement"
+            case 2:
+                return "Mobile Developement"
+            case 3:
+                return "Design"
+            case 4:
+                return "Testing"
+            case 5:
+                return "Degital Marketing"
+            default:
+                break;
+        }
+    }
+
     return (
         <div>
             <dialog id="my_modal_3" className="  min-h-[400px] w-[750px] modal-top rounded bg-slate-50 ">

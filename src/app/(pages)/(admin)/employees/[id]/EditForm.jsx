@@ -35,10 +35,9 @@ const EditForm = ({ id }) => {
 
     const router = useRouter();
 
-    const handleSubmit = async (values) => {
-        console.log(values);
+    const handleSubmit = (values) => {
         try {
-            const response = await handleEmployeeUpdate(values, id);
+            const response = handleEmployeeUpdate(values, id);
             if (response.success) {
                 toast('success fully updated!', {
                     position: "top-right",
@@ -66,9 +65,8 @@ const EditForm = ({ id }) => {
     const formikRef = useRef();
     formikRef.current = formik;
 
-    const getEmployee = useCallback(async function () {
-        const response = await getEmployeeById(id);
-        console.log(response);
+    const getEmployee = useCallback(function () {
+        const response = getEmployeeById(id);
         formikRef.current.setFieldValue('emp_id', response?.emp_id || "")
         formikRef.current.setFieldValue('name', response?.name || "")
         formikRef.current.setFieldValue('email', response?.email || "")

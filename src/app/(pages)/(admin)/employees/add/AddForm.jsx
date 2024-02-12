@@ -39,10 +39,10 @@ const AddForm = () => {
     //         body: form,
     //     })
     // }
-    
-    const handleSubmit = useCallback(async (values) => {
+
+    const handleSubmit = useCallback((values) => {
         try {
-            const response = await handleEmployeeadd(values);
+            const response = handleEmployeeadd(values);
             if (response.success) {
                 toast('success fully Created!', {
                     position: "top-right",
@@ -115,7 +115,7 @@ const AddForm = () => {
                         required
                         error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
                     />
-                    
+
                     <InputElement
                         type="password"
                         label="Password"

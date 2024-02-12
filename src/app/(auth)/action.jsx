@@ -62,7 +62,7 @@ export async function logout() {
         return json
     }
 }
-export const getDepartMent = (value) => {
+export  const getDepartMent = (value) => {
     switch (parseInt(value)) {
         case 1:
             return "Web Developement"

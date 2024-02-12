@@ -26,8 +26,8 @@ async function checkLogoin() {
     // revalidatePath('/');
     redirect('/login')
   } else if (isUserLogged && isUserLogged !== "admin") {
-    revalidatePath('/');
-    // redirect('/employeeProfile')
+    // revalidatePath('/');
+    redirect('/employeeProfile')
   }
 }
 
@@ -54,6 +54,7 @@ export default function RootLayout({ children }) {
                   {children}
                 </div>
               </>
+
         }
 
         <ToastContainer

@@ -1,4 +1,6 @@
-import { getDepartMent, getUser } from "@/app/utils";
+import { getDepartMent } from "@/app/(auth)/action"
+import { getUser } from "@/app/utils"
+
 
 const EmployeeProfilePage = async () => {
     const data = await getUser()
