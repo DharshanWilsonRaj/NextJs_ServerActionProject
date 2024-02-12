@@ -55,7 +55,7 @@ export async function logout() {
     if (json.success) {
         cookies().delete('user')
         cookies().delete('token')
-        revalidatePath('/')
+        revalidatePath('/login')
         process.on('exit', function () {
             process.exit(1);
         });

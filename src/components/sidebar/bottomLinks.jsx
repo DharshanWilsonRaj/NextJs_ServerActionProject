@@ -9,7 +9,7 @@ const BottomLinks = () => {
         'use server'
         const response = await logout();
         if (response?.success) {
-
+            revalidatePath('/login')
             redirect('/login')
         }
     }
