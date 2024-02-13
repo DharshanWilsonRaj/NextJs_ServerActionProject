@@ -42,7 +42,6 @@ export async function logout() {
 
     const cookieStore = cookies();
     const token = cookieStore.get('token');
-
     const response = await fetch(`${process.env.NEXT_BASE_URL}/logout`, {
         method: 'POST',
         headers: {
@@ -56,9 +55,13 @@ export async function logout() {
         cookies().delete('user')
         cookies().delete('token')
         revalidatePath('/login')
+
         process.on('exit', function () {
             process.exit(1);
         });
+        revalidatePath('/')
+        revalidatePath('/login')
+        revalidatePath('/employeeProfile')
         return json
     }
 }

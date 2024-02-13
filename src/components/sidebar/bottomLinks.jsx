@@ -9,11 +9,14 @@ const BottomLinks = () => {
         'use server'
         const response = await logout();
         if (response?.success) {
-            revalidatePath('/login')
+
+            // revalidatePath('/login')
+            // revalidatePath('/')
+            // revalidatePath('/employeeProfile')
             redirect('/login')
         }
     }
-    
+
     return (
 
         <div className='w-full'>
@@ -27,7 +30,6 @@ const BottomLinks = () => {
                     <span className="ms-3">Logout</span>
                 </button>
             </form>
-
         </div>
 
     )
